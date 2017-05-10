@@ -21,7 +21,7 @@ class BlackJack
 public:
 BlackJack(); //default constructor
 
-vector <char> rank = {"A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"};
+vector <int> rankval;//store value of card
 //BlackJack moves
 void hit();	//add another card
 void stand();   //add no more cards
