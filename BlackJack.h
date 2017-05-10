@@ -1,5 +1,6 @@
 /*===============================================
 Program that simulates the BlackJack card game 
+with two players	
 Authors: Josh Kiss, Rob Piccirillo
 ===============================================*/
 
@@ -12,30 +13,32 @@ using namespace std;
 #ifndef BLACKJACK_H_
 #define BLACKJACK_H_
 
-#define BLACKJACK 21
 
-class Player
+#define BLACKJACK 21	
+
+class BlackJack
 {
 public:
-Player();
+BlackJack(); //default constructor
 
+vector <char> rank = {"A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"};
+//BlackJack moves
+void hit();	//add another card
+void stand();   //add no more cards
+  
+	
+	
 private:
-int m_hand;
-}
+int m_val;
+vector <int> m_playersHand;
+vector <int> m_dealersHand;
+  
+int m_playersHandSum;
+int m_dealershandSum;
+	
 
-class BlackJack: public Player
-{
-	public:
-	BlackJack(); //default constructor
-  
-  void hit();
-  void stand();
-  
-  private:
-  int m_val;
-  int m_playersHand;
-  int m_dealersHand;
-  
 };//blackjack
 
 #endif
+
+//this still seems too easy
