@@ -13,20 +13,22 @@ using namespace std;
 #ifndef BLACKJACK_H_
 #define BLACKJACK_H_
 
-
+#define DECKSIZE 52
 #define BLACKJACK 21	
 
 class BlackJack
 {
 public:
 BlackJack(); //default constructor
-
-vector <int> rankval;//store value of card
+BlackJack shuffleDeck();	//shuffle deck of cards
+	
+//vector <int> rankval;//store value of card
+int drawCard();
 //BlackJack moves
 void hit();	//add another card
 void stand();   //add no more cards
-  
 	
+~BlackJack();
 	
 private:
 int m_val;
