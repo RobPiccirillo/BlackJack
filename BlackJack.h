@@ -41,4 +41,4 @@ int m_dealershandSum;
 
 #endif
 
-//this still seems too easy
+//this still seems too easy, and too hard at the same time
