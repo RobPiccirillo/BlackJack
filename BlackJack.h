@@ -4,43 +4,37 @@ with two players
 Authors: Josh Kiss, Rob Piccirillo
 ===============================================*/
 
-#include <iostream> //for cout
+#include <iostream> //for cout, cin
 #include <vector>   //for vector
 #include <string>
-#include <cstdlib>  //for rand
+#include <ctime> 
+#include <cstdlib>  //for srand, rand
 using namespace std;
 
 #ifndef BLACKJACK_H_
 #define BLACKJACK_H_
 
-#define DECKSIZE 52
+#define DECKSIZE 52 //if needed
 #define BLACKJACK 21	
 
-class BlackJack
+class blackjack 
 {
-public:
-BlackJack(); //default constructor
-BlackJack shuffleDeck();	//shuffle deck of cards
+	public:
+	blackjack();
 	
-//vector <int> rankval;//store value of card
-int drawCard();
-//BlackJack moves
-void hit();	//add another card
-void stand();   //add no more cards
-	
-~BlackJack();
-	
-private:
-int m_val;
-vector <int> m_playersHand;
-vector <int> m_dealersHand;
-  
-int m_playersHandSum;
-int m_dealershandSum;
-	
+	void dealCard(int numCards);
+	void stand();
 
-};//blackjack
+	int sumOfCards();
+	bool win();
+	//void shuffleCards();
+	private:
+	//data members
+	vector <int> playerHand; 
+	vector <int> dealerHand;
+	int m_playerSum;
+	int m_dealerSum;
+	
+};
 
 #endif
-
-//this still seems too easy, and too hard at the same time
