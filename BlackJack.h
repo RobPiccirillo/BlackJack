@@ -22,7 +22,7 @@ class blackjack
 	public:
 	blackjack();
 	
-	void dealCard(int numCards);
+	void dealCard(int numCards, vector <int> &Hand);
 	void stand();
 
 	int sumOfCards();
