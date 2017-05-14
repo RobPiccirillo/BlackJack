@@ -25,7 +25,7 @@ class blackjack
 	void dealCard(int numCards, vector <int> &Hand);
 	void stand();
 
-	int sumOfCards();
+	int sumOfCards(vector <int> &Hand);
 	bool win();
 	//void shuffleCards();
 	private:
