@@ -6,13 +6,6 @@ Authors: Josh Kiss, Rob Piccirillo
 ---------------------------------------*/
 #include "BlackJack.h"
 
-//std::ostream& operator<<(std::ostream& os, const BlackJack& game)
-// {
-   // os << b.dealPlayerCard << "/" << endl;
-	// os << b.dealDealerCard << "/" << endl;
-   // return os;
-// }
-
 
 int main()
 {
@@ -22,7 +15,7 @@ int main()
   string start;
   cin >> start;
 
-  BlackJack game;
+  blackjack game;
   if (start =="Y" || start == "y")
 	{
 	int bet;
@@ -149,7 +142,7 @@ int main()
 			  }
 	}
 	}
-	while (money > 0); // Let's player know the game is over!
+	while (money <= 0); // Let's player know the game is over!
 	{
 	  cout << "You're all out of money! Come back another time." << endl;
 	  cout << "Good game!" << endl;
