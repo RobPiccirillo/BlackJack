@@ -6,13 +6,6 @@ Authors: Josh Kiss, Rob Piccirillo
 ---------------------------------------*/
 #include "BlackJack.h"
 
-//std::ostream& operator<<(std::ostream& os, const BlackJack& game)
-// {
-   // os << b.dealPlayerCard << "/" << endl;
-	// os << b.dealDealerCard << "/" << endl;
-   // return os;
-// }
-
 
 int main()
 {
@@ -22,12 +15,12 @@ int main()
   string start;
   cin >> start;
 
-  BlackJack game;
+  blackjack game;
   if (start =="Y" || start == "y")
 	{
 	int bet;
 	int money = 1000;	
-	do 		// Runs the game while you have money.
+	while(1) 		// Runs the game while you have money.
 	{
 		cout << "You currently have $" << money << endl;
 		cout << "Place your bet: (Minimum: $10, Maxmimum: $" << money << "): " << endl;
@@ -35,7 +28,7 @@ int main()
 		while ( bet <10 || bet > money )      
 		{
 		if (bet < 10)
-		cout << "\nWe ain't playing kiddie BlackJack! Make a real bet!";
+		cout << "\nWe ain't playing kiddie BlackJack! Make a real bet!" << endl;
 		if (bet > money)
 		cout << "\nYou don't have enough money!";
 		cout << "Place your bet: (Minimum: $10, Maxmimum: $" << money << "): " << endl;
