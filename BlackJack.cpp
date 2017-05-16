@@ -21,6 +21,7 @@ blackjack::blackjack()  //default constructor
 void blackjack::dealPlayerCard()
 {
   playerHand.push_back(Deck[DeckCounter]);
+  cout << Deck[DeckCounter] << endl;
   DeckCounter++;
 }
 //------------------------------------------------------------
@@ -28,6 +29,7 @@ void blackjack::dealPlayerCard()
 void blackjack::dealDealerCard()
 {
   dealerHand.push_back(Deck[DeckCounter]);
+  cout << Deck[DeckCounter] << endl;
   DeckCounter++;
 }
 //-------------------------------------------------------------
@@ -52,8 +54,9 @@ void blackjack::getDealerHand()
 
 void blackjack::playerSplit()  //player stop drawing cards
 {
-  dealerSplit();
+  dealerSplit(); //dealer stops drawing or draws again
 }
+//-------------------------------------------------------------
 
 void blackjack::dealerSplit()
 {
@@ -65,16 +68,17 @@ void blackjack::dealerSplit()
 }
 //--------------------------------------------------------------
 
-void blackjack::getPlayerSum() //get the sum of the players cards
+int blackjack::getPlayerSum() //get the sum of the players cards
 {
   for (int i=0; i<playerHand.size(); i++)
     m_playerSum += playerHand[i];
   //move through playerHand vector and add up values into sum
 
+  return m_playerSum;
 }
 //----------------------------------------------------------------
 
-void blackjack::getDealerSum() //get sum of dealers cards
+int blackjack::getDealerSum() //get sum of dealers cards
 {
   for (int i=0; i<dealerHand.size(); i++)
     m_dealerSum += dealerHand[i];
@@ -83,11 +87,15 @@ void blackjack::getDealerSum() //get sum of dealers cards
   if (m_dealerSum < 17) //dealers stop drawing when they have 17
     dealerSplit();
 
+  return m_dealerSum;
 }
 //--------------------------------------------------------------
 
 void blackjack::playerWin()
 {
+  getPlayerSum();
+  getDealerSum();
+
   if (m_playerSum > m_dealerSum && m_playerSum <= BLACKJACK)
     cout << "You win!" << endl;
 
