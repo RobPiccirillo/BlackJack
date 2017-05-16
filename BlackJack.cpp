@@ -1,14 +1,14 @@
 /*-------------------------------------------------
   BlackJack.cpp
   Definitions and implementations of
-  functions in class blackjack
+  functions in class BlackJack
   Authors: Josh Kiss, Rob Piccirillo
   ------------------------------------------------*/
 #include "BlackJack.h"
+#include <numeric>
 
 
-
-blackjack::blackjack()  //default constructor
+BlackJack::BlackJack()  //default constructor
 {                       //initialize everything with default values
   srand(time(NULL));
   m_playerSum=0;
@@ -18,21 +18,21 @@ blackjack::blackjack()  //default constructor
 }
 //------------------------------------------------------------
 
-void blackjack::dealPlayerCard()
+void BlackJack::dealPlayerCard()
 {
   playerHand.push_back(Deck[DeckCounter]);
   DeckCounter++;
 }
 //------------------------------------------------------------
 
-void blackjack::dealDealerCard()
+void BlackJack::dealDealerCard()
 {
   dealerHand.push_back(Deck[DeckCounter]);
   DeckCounter++;
 }
 //-------------------------------------------------------------
 
-void blackjack::getPlayerHand()
+void BlackJack::getPlayerHand()
 {
   for (int i=0; i<playerHand.size(); i++)
     cout << playerHand[i] << " ";
@@ -41,7 +41,7 @@ void blackjack::getPlayerHand()
 }
 //-------------------------------------------------------------
 
-void blackjack::getDealerHand()
+void BlackJack::getDealerHand()
 {
   for (int i=0; i<dealerHand.size(); i++)
     cout << dealerHand[i] << " ";
@@ -50,12 +50,12 @@ void blackjack::getDealerHand()
 }
 //-------------------------------------------------------------
 
-void blackjack::playerSplit()  //player stop drawing cards
+void BlackJack::playerSplit()  //player stop drawing cards
 {
   dealerSplit();
 }
 
-void blackjack::dealerSplit()
+void BlackJack::dealerSplit()
 {
   if (m_dealerSum < 17)
     dealDealerCard();
@@ -65,19 +65,20 @@ void blackjack::dealerSplit()
 }
 //--------------------------------------------------------------
 
-void blackjack::getPlayerSum() //get the sum of the players cards
+int BlackJack::getPlayerSum() //get the sum of the players cards
 {
-  for (int i=0; i<playerHand.size(); i++)
-    m_playerSum += playerHand[i];
+  m_playerSum = accumulate(playerHand.begin(), playerHand.end(), 0);
+
   //move through playerHand vector and add up values into sum
 
 }
 //----------------------------------------------------------------
 
-void blackjack::getDealerSum() //get sum of dealers cards
+int BlackJack::getDealerSum() //get sum of dealers cards
 {
   for (int i=0; i<dealerHand.size(); i++)
-    m_dealerSum += dealerHand[i];
+    m_dealerSum = accumulate(dealerHand.begin(), dealerHand.end(), 0);
+
   //move through dealerHand vector and add up values into sum
 
   if (m_dealerSum < 17) //dealers stop drawing when they have 17
@@ -86,7 +87,7 @@ void blackjack::getDealerSum() //get sum of dealers cards
 }
 //--------------------------------------------------------------
 
-void blackjack::playerWin()
+void BlackJack::playerWin()
 {
   if (m_playerSum > m_dealerSum && m_playerSum <= BLACKJACK)
     cout << "You win!" << endl;
@@ -96,9 +97,8 @@ void blackjack::playerWin()
 }
 //--------------------------------------------------------------
 
-void blackjack::loadDeck()
+void BlackJack::loadDeck()
 {
   for (int i=0; i<DECKSIZE; i++)
     Deck.push_back( rand()%11+1 );
 }
-
