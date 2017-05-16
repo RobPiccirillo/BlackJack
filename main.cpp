@@ -35,7 +35,7 @@ int main()
 		cin >> bet;
 		}
 		cout << "\nYou bet $" << bet << endl;
-		cout << "\n\n Press any key to play:" << endl;
+		cout << "\n Press enter to play:" << endl;
 		cin.get();  // Allows player to interact & choose when to continue
 
           game.loadDeck(); //initialize deck with card values
@@ -100,14 +100,14 @@ int main()
 			  cout << "The dealer hits again... And now has... " << endl;
 			  game.dealDealerCard();
 			  cout << game.getDealerSum() << endl;
-			  while (game.getDealerSum() < 17) // As long as dealer has less than
+			  while (game.getDealerSum() < 17) // As long as dealer has less than 17
 			  {
 				cout << "The dealer hits again... And now has... " << endl;
 				game.dealDealerCard();
 				cout << game.getDealerSum() << endl;
 				cin.get();
 			  }
-			  if (game.getDealerSum() > 21) // Can't go over 21!
+			  if (game.getDealerSum() > 21) // Dealer can't go over 21!
 			  {
 				  cout << "The dealer bust! You've won!" << endl;
 				  money += bet;
