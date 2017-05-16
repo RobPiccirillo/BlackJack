@@ -8,37 +8,54 @@ Authors: Josh Kiss, Rob Piccirillo
 
 int main()
 {
-	cout << "welcome to blackjack" << endl;
-	cout << "ready to play? (press Y/N)" << endl;
-	
-	char start;
-	cin >> start;
-	
-	if (start =="Y" || start == "y")
-	{
-		bool run = true;
-		while (run)
-		{
-		blackjack game;
-		game.DealPlayerCard(2);
-		game.DealDealerCard(2);
-			
-		cout << "dealer has cards: " << dealerHand << endl;
-		cout << "you have cards: " << playerHand << endl;
-		cout << "do you want to hit? (Y/N) " << endl;			
-		
-		char choice;
-		cin >> choice;
-		if (choice == "Y" || choice == "y")
-		{
-			dealCard(1);
-		}
-		
-		cout << "you have cards: " << playerHand << endl;
-		}
-	}
-	
-	//still needs to be added
-	
-return 0;	
+  cout << "welcome to blackjack" << endl;
+  cout << "ready to play? (press Y/N)" << endl;
+
+  string start;
+  cin >> start;
+
+  if (start =="Y" || start == "y")
+    {
+          blackjack game;
+          game.loadDeck(); //initialize deck with card values
+          bool run = true;
+
+
+          //start player and dealer off with two cards
+          game.dealPlayerCard();
+          game.dealDealerCard();
+          game.dealPlayerCard();
+          game.dealDealerCard();
+
+          cout << "You have cards:" << endl;
+          game.getPlayerHand(); //display players cards
+
+          cout << "Dealer has cards:" << endl;
+          game.getDealerHand(); //display dealers cards
+
+          cout << "Do you want to draw a card? (Y/N)" << endl;
+          string draw;
+          cin >> draw;
+
+          while (draw == "y" || draw == "Y")
+            {
+              game.dealPlayerCard();
+
+              game.dealerSplit();//check to see if dealer splits
+
+            }
+    }
+
+          else
+            {
+              game.playerSplit();  //player stops
+              game.playerWin();
+            }
+
+
+    }
+
+
+  return 0;
+
 }
