@@ -6,6 +6,13 @@ Authors: Josh Kiss, Rob Piccirillo
 ---------------------------------------*/
 #include "BlackJack.h"
 
+//std::ostream& operator<<(std::ostream& os, const BlackJack& game)
+// {
+   // os << b.dealPlayerCard << "/" << endl;
+	// os << b.dealDealerCard << "/" << endl;
+   // return os;
+// }
+
 
 int main()
 {
@@ -15,7 +22,7 @@ int main()
   string start;
   cin >> start;
 
-  blackjack game;
+  BlackJack game;
   if (start =="Y" || start == "y")
 	{
 	int bet;
@@ -35,7 +42,7 @@ int main()
 		cin >> bet;
 		}
 		cout << "\nYou bet $" << bet << endl;
-		cout << "\n Press enter to play:" << endl;
+		cout << "\n\n Press any key to play:" << endl;
 		cin.get();  // Allows player to interact & choose when to continue
 
           game.loadDeck(); //initialize deck with card values
@@ -45,22 +52,18 @@ int main()
           //start player and dealer off with two cards
 		  cout << "Your first card is a(n) ";
           game.dealPlayerCard();
-		  cout << "." << endl;
 		  cin.get();
 		  
 		  cout << "The dealer draws his first card: ";
           game.dealDealerCard();
-		  cout << "." << endl;
 		  cin.get();
 		  
 		  cout << "Your second card is a(n) "; 
-          game.dealPlayerCard(); 
-		  cout << "." << endl;
+          game.dealPlayerCard();
 		  cin.get();
 		  
 		  cout << "The dealer draws his second card: ";
           game.dealDealerCard();
-		  cout << "." << endl;
 		  cin.get();
 		  
 		  
@@ -70,7 +73,7 @@ int main()
 
           cout << "Dealer has cards:" << endl;
           game.getDealerHand(); //display dealers cards
-		  cout << " = " << game.getPlayerSum() << endl;
+		  cout << " = " << game.getDealerSum() << endl;
 	
 		  hitagain:
 		  
@@ -80,7 +83,9 @@ int main()
 
           if (draw == "y" || draw == "Y")
             {
+			  cout << "You've drawn a..." << endl;
               game.dealPlayerCard();
+			  cout << "You stand at: " << game.getPlayerSum() << endl;
 			  if (game.getPlayerSum() < 22) goto hitagain;	
 
 			  else 
@@ -94,23 +99,22 @@ int main()
 		  {
 			cout << "You bust!" << endl;
 			money -= bet;
+			game.clearHands();
 		  }
 		  else
 		  {
-			  cout << "The dealer hits again... And now has... " << endl;
-			  game.dealDealerCard();
-			  cout << game.getDealerSum() << endl;
-			  while (game.getDealerSum() < 17) // As long as dealer has less than 17
+			  while (game.getDealerSum() < 17) // As long as dealer has less than
 			  {
 				cout << "The dealer hits again... And now has... " << endl;
 				game.dealDealerCard();
-				cout << game.getDealerSum() << endl;
+				cout << "The dealer stands at... " << game.getDealerSum() << endl;
 				cin.get();
 			  }
-			  if (game.getDealerSum() > 21) // Dealer can't go over 21!
+			  if (game.getDealerSum() > 21) // Can't go over 21!
 			  {
 				  cout << "The dealer bust! You've won!" << endl;
 				  money += bet;
+				  game.clearHands();
 			  }
 			  
 			  else
@@ -120,32 +124,37 @@ int main()
 				  if (game.getPlayerSum() == game.getDealerSum())
 				  {
 					  cout << "We have a draw!" << endl;
+					  game.clearHands();
 				  }
 				  else {}
 				  if (game.getPlayerSum() == 21)
 				  {
 					  cout << "You got blackjack! You win!" << endl;
 					  money += bet;
+					  game.clearHands();
 				  }
 				  else {}
 				  if (game.getPlayerSum() > game.getDealerSum())
 				  {
 					  cout << "You win!" << endl;
 					  money += bet;
+					  game.clearHands();
 				  }
 				   else {}
 				   if (game.getPlayerSum() < game.getDealerSum())
 				   {
 					   cout << "You lose!" << endl;
 					   money -= bet;
+					   game.clearHands();
 				   }
 			  }
 	}
 	}
-	while (money <= 0); // Let's player know the game is over!
+	while (money > 10); // Let's player know the game is over!
 	{
 	  cout << "You're all out of money! Come back another time." << endl;
 	  cout << "Good game!" << endl;
+	  exit;
 	
 	}
   	  
