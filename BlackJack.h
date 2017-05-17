@@ -9,6 +9,7 @@ Authors: Josh Kiss, Rob Piccirillo
 #include <string>   //string
 #include <ctime>    //time
 #include <cstdlib>  //srand, rand
+#include <numeric> // accumulate
 using namespace std;
 
 #ifndef BLACKJACK_H_
@@ -17,10 +18,10 @@ using namespace std;
 #define DECKSIZE 52 //set constant to initialize deck with 52 cards
 #define BLACKJACK 21 //set constant to highest score you can get in blackjack
 
-class blackjack //: public player
+class BlackJack //: public player
 {
  public:
-  blackjack();    //default constructor
+  BlackJack();    //default constructor
 
   int dealCard();
 
@@ -29,7 +30,8 @@ class blackjack //: public player
 
   void getPlayerHand();  //display players cards
   void getDealerHand();  //display dealers hands
-
+  void clearHands();     //clear both the player's hand and dealer's hand
+  
   int getPlayerSum();    //return sum of players cards
   int getDealerSum();    //return sum of dealers cards
 
@@ -39,11 +41,11 @@ class blackjack //: public player
   void playerWin();    //determine if player won game
 
   void loadDeck();    //put random cards in deck to start
-  //~blackjack();      //destructor, destroy array storing deck of cards
+  //~BlackJack();      //destructor, destroy array storing deck of cards
 
  private:
   //data members
-
+  
   vector <int> playerHand;
   vector <int> dealerHand;
   /*-------------------------------------------
@@ -66,5 +68,5 @@ class blackjack //: public player
 
 };
 
-#endif /*class blackjack*/
 
+#endif /*class BlackJack*/
