@@ -23,8 +23,6 @@ class BlackJack //: public player
  public:
   BlackJack();    //default constructor
 
-  int dealCard();
-
   void dealPlayerCard();  //give card to player
   void dealDealerCard();  //give card to dealer
 
@@ -34,11 +32,6 @@ class BlackJack //: public player
   
   int getPlayerSum();    //return sum of players cards
   int getDealerSum();    //return sum of dealers cards
-
-  void playerSplit();    //player or dealer stops drawing
-  void dealerSplit();
-
-  void playerWin();    //determine if player won game
 
   void loadDeck();    //put random cards in deck to start
   //~BlackJack();      //destructor, destroy array storing deck of cards
