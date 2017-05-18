@@ -52,21 +52,6 @@ void BlackJack::getDealerHand()
 }
 //-------------------------------------------------------------
 
-void BlackJack::playerSplit()  //player stop drawing cards
-{
-  dealerSplit();
-}
-
-void BlackJack::dealerSplit()
-{
-  if (m_dealerSum < 17)
-    dealDealerCard();
-
-  else
-    playerWin();
-}
-//--------------------------------------------------------------
-
 int BlackJack::getPlayerSum() //get the sum of the players cards
 {
   m_playerSum = accumulate(playerHand.begin(), playerHand.end(), 0);
@@ -86,15 +71,6 @@ int BlackJack::getDealerSum() //get sum of dealers cards
 }
 //--------------------------------------------------------------
 
-void BlackJack::playerWin()
-{
-  if (m_playerSum > m_dealerSum && m_playerSum <= BLACKJACK)
-    cout << "You win!" << endl;
-
-  if (m_playerSum < m_dealerSum && m_dealerSum <= BLACKJACK)
-    cout << "Dealer wins" << endl;
-}
-//--------------------------------------------------------------
 
 void BlackJack::loadDeck()
 {
