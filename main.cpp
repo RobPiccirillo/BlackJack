@@ -6,14 +6,6 @@ Authors: Josh Kiss, Rob Piccirillo
 ---------------------------------------*/
 #include "BlackJack.h"
 
-//std::ostream& operator<<(std::ostream& os, const BlackJack& game)
-// {
-   // os << b.dealPlayerCard << "/" << endl;
-	// os << b.dealDealerCard << "/" << endl;
-   // return os;
-// }
-
-
 int main()
 {
   cout << "Welcome to BlackJack!" << endl;
@@ -42,57 +34,42 @@ int main()
 		cin >> bet;
 		}
 		cout << "\nYou bet $" << bet << endl;
-		cout << "\n\n Press any key to play:" << endl;
+		cout << "\n\nPress enter to play:" << endl;
 		cin.get();  // Allows player to interact & choose when to continue
 
           game.loadDeck(); //initialize deck with card values
           bool run = true;
 
-
           //start player and dealer off with two cards
 		  cout << "Your first card is a(n) ";
           game.dealPlayerCard();
-		  cout << "\n\n Press any key to continue:" << endl;
-
-		  cout << " " << endl;
-		  cout << " " << endl;
-
+		  cout << "\n\nPress any key to continue:" << "\n\n" << endl;
 		  cin.get();
 		  
 		  cout << "The dealer draws his first card: ";
           game.dealDealerCard();
-		  cout << "\n\n Press any key to continue:" << endl;
-		  cout << " " << endl;
-		  cout << " " << endl;
+		  cout << "\n\nPress enter to continue:" << endl;
 		  cin.get();
 		  
 		  cout << "Your second card is a(n) "; 
           game.dealPlayerCard();
-		  cout << "\n\n Press any key to continue:" << endl;
-		  cout << " " << endl;
-		  cout << " " << endl;
+		  cout << "\n\nPress any key to continue:\n" << endl;  
 		  cin.get();
 		  
 		  cout << "The dealer draws his second card: ";
           game.dealDealerCard();
-		  cout << "\n\n Press any key to continue:" << endl;
-		  cout << " " << endl;
-		  cout << " " << endl;
+		  cout << "\n\nPress any key to continue:\n" << endl;
 		  cin.get();
 		  
 		  
 		  cout << "You have cards:" << endl;
           game.getPlayerHand(); //display players cards
-		  cout << " = " << game.getPlayerSum() << endl;
-		  cout << " " << endl;
-		  cout << " " << endl;
+		  cout << " = " << game.getPlayerSum() << "\n\n" << endl;
 
           cout << "Dealer has cards:" << endl;
           game.getDealerHand(); //display dealers cards
-		  cout << " = " << game.getDealerSum() << endl;
-		  cout << " " << endl;
-		  cout << " " << endl;
-
+		  cout << " = " << game.getDealerSum() << "\n\n" << endl;
+//-------------------------------------------------------------------------------------
 		  hitagain:
 		  
           cout << "Do you want to draw a card? (Y/N)" << endl;
@@ -103,27 +80,22 @@ int main()
             {
 			  cout << "You've drawn a..." << endl;
               game.dealPlayerCard();
-			  cout << "You stand at: " << game.getPlayerSum() << endl;
-			  cout << " " << endl;
-			  cout << " " << endl;
+			  cout << "You stand at: " << game.getPlayerSum() << "\n\n" << endl;
 
 			  cin.get();
 			  if (game.getDealerSum() < 17)
 			  {
 				  game.dealDealerCard();
 				  cout << "The dealer stands at: " << game.getDealerSum() << endl;
-		          cout << "\n\n Press any key to continue:" << endl;
+		          cout << "\n\nPress any key to continue:" << endl;
 				  cin.get();
 
 				  if (game.getDealerSum() > 21) // Can't go over 21!
 					{
-						cout << "The dealer bust! You've won!" << endl;
+						cout << "The dealer bust! You've won!\n\n" << endl;
 						money += bet;
-						cout << " " << endl;
-						cout << " " << endl;
 						game.clearHands();
 					}
-
 				}
 			  if (game.getPlayerSum() < 22) goto hitagain;	
 
@@ -145,21 +117,16 @@ int main()
 			  {
 				cout << "The dealer hits again... And now has... " << endl;
 				game.dealDealerCard();
-				cout << "The dealer stands at... " << game.getDealerSum() << endl;
-				cout << " " << endl;
-				cout << " " << endl;		
+				cout << "The dealer stands at... " << game.getDealerSum() << "\n\n" << endl;
 				cin.get();
 			  }
 			  if (game.getDealerSum() > 21) // Can't go over 21!
 			  {
-				  cout << "The dealer bust! You've won!" << endl;
+				  cout << "The dealer bust! You've won!\n\n" << endl;
 				  money += bet;
-				  cout << " " << endl;
-				  cout << " " << endl;
 				  game.clearHands();
 			  }
-			  
-			  
+			  		  
 			  {
 				  cout << "The dealer stands at: "; 
 				  cout << game.getDealerSum() << endl;
@@ -178,19 +145,15 @@ int main()
 				  else {}
 				  if (game.getPlayerSum() > game.getDealerSum())
 				  {
-					  cout << "You win!" << endl;					  
+					  cout << "You win!\n\n" << endl;					  
 					  money += bet;
-					  cout << " " << endl;
-					  cout << " " << endl;
 					  game.clearHands();
 				  }
 				   else {}
 				   if (game.getPlayerSum() < game.getDealerSum())
 				   {
-					   cout << "You lose!" << endl;
+					   cout << "You lose!\n\n" << endl;
 					   money -= bet;
-					   cout << " " << endl;
-					   cout << " " << endl;
 					   game.clearHands();
 				   }
 			  }
@@ -201,16 +164,7 @@ int main()
 	  cout << "You're all out of money! Come back another time." << endl;
 	  cout << "Good game!" << endl;
 	  exit;
-	
 	}
-  	  
-		  
     }
-
-	
-
-  
   return 0;
-  
-
 }
